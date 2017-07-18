@@ -1,0 +1,618 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>ระบบจัดการครุภัณฑ์</title>
+		<meta name="description" content="" />
+		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+		<!-- WEB FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- THEME CSS -->
+		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css" id="color_scheme" />
+
+		<!-- JQGRID TABLE -->
+		<link href="assets/plugins/jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout-jqgrid.css" rel="stylesheet" type="text/css" />
+	</head>
+	<!--
+		.boxed = boxed version
+	-->
+	<body>
+
+
+		<!-- WRAPPER -->
+		<div id="wrapper">
+
+			<!-- 
+				ASIDE 
+				Keep it outside of #wrapper (responsive purpose)
+			-->
+		<aside id="aside">
+				
+				<nav id="sideNav"><!-- MAIN MENU -->
+					<ul class="nav nav-list">
+						
+						<li>
+							<a class="home" href="index_admin.html"><!-- warning - url used by default by ajax (if eneabled) -->
+								<i class="main-icon fa fa-home"></i> <span>หน้าหลัก</span>
+							</a>
+						</li>
+					
+						<li>
+							<a href="show_mat.html">
+								<i class="main-icon fa fa-plus-square"></i> <span>รายการครุภัณฑ์</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="insert_mat.html">
+								<i class="main-icon fa fa-plus-square"></i> <span>เพิ่มครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>แก้ไขข้อมูลครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="check_status.html">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>คำร้องขอยืมครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="check_obligation.html">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>ตรวจสอบหนี้สิน</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-check-square-o"></i> <span>ตรวจสอบครุภัณฑ์</span>
+							</a>
+							<ul>
+								<li><a href="#">ตรวจสอบสภาพครุภัณฑ์</a></li>
+								<li><a href="#">ตรวจสอบประกัน</a></li>
+								<li><a href="tables-footable.html">ตรวจสอบครุภัณฑ์ประจำปี</a></li>
+								
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-file"></i> <span>ออกรายงาน</span>
+							</a>
+							<ul>
+								<li><a href="tables-bootstrap.html">รายงาน1</a></li>
+								<li><a href="tables-jqgrid.html">รายงาน2</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="main-icon fa fa-external-link"></i> <span>จำหน่ายครุภัณฑ์</span>
+							</a>
+						</li>
+					</ul>	
+						
+						
+						
+					
+					<h3>MORE</h3>
+					<ul class="nav nav-list">
+						<li>
+							<a href="calendar.html">
+								<i class="main-icon fa fa-calendar"></i>
+								<span class="label label-warning pull-right">2</span> <span>Calendar</span>
+							</a>
+						</li>
+						<li>
+							<a href="../../HTML/start.html">
+								<i class="main-icon fa fa-link"></i>
+								<span class="label label-danger pull-right">PRO</span> <span>Frontend</span>
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+
+				<span id="asidebg"><!-- aside fixed background --></span>
+			</aside>
+
+
+			<!-- HEADER -->
+			<header id="header">
+
+				<!-- Mobile Button -->
+				<button id="mobileMenuBtn"></button>
+
+				<!-- Logo -->
+				<span class="logo pull-left">
+					<img src="assets/images/logo_light.png" alt="admin panel" height="35" />
+				</span>
+
+				<form method="get" action="page-search.html" class="search pull-left hidden-xs">
+					<input type="text" class="form-control" name="k" placeholder="Search for something..." />
+				</form>
+
+				<nav>
+
+					
+
+				</nav>
+
+			</header>
+			
+			<section id="middle">
+
+
+				<!-- page title -->
+				<header id="page-header">
+					<h1>รายการครุภัณฑ์</h1>
+					<ol class="breadcrumb">
+						<li><a href="index_admin.html">หน้าหลัก</a></li>
+						<li><a href="show_mat.html">รายการครุภัณฑ์</a></li>
+						<li class="active">นำเข้าครุภัณฑ์</li>
+					</ol>
+				</header>
+				<!-- /page title -->
+
+
+				<div id="content" class="padding-20">
+							<div class="panel panel-default">
+								<div class="panel-heading panel-heading-transparent">
+									<strong>ฟอร์มนำเข้าครุภัณฑ์ (ส่วนที่ 1)</strong>
+								</div>
+
+								<div class="panel-body">
+
+										<form class="validate" action="php/contact.php" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+											<fieldset>
+												<!-- required [php action request] -->
+												<input type="hidden" name="action" value="contact_send" />
+
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-4 col-sm-4">
+															<label>วันที่นำเข้า</label>
+															<input type="text" name="contact[start_date]" value="" class="form-control datepicker required" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+														</div>
+														<div class="col-md-4 col-sm-4">
+															<label>ปีงบประมาณ</label>
+															<input type="text" name="contact[mat_year]" value="" class="form-control required" data-format="9999" data-placeholder="_" placeholder="ปี พศ.">
+														</div>
+														<div class="col-md-4 col-sm-4 ">
+															<label>วิธีการที่ได้มา</label>
+															<select name="contact[position]" class="form-control pointer required">
+																<option value="">--- เลือกเลือกวิธี ---</option>
+																<option value="#">ตกลงราคา</option>
+																<option value="#">สอบราคา</option>
+																<option value="#">ประกวดราคา</option>
+																<option value="#">วิธีพิเศษ</option>
+																<option value="#">กรณีพิเศษ</option>
+																<option value="#">E-Auction</option>
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-4 col-sm-4">
+															<label>จำนวนเงินงบประมาณ</label>
+															<input type="text" name="contact[mat_year]" value="" class="form-control required" data-format="9999" data-placeholder="_" >
+														</div>
+														<div class="col-md-6 col-sm-6">
+															<label>ผู้ขาย/บริษัท</label>
+															<select name="contact[position]" class="form-control pointer required">
+																<option value="">--- เลือกเลือกบริษัท ---</option>
+																<option value="#">บริษัท1</option>
+																<option value="#">บริษัท2</option>
+															</select>
+														</div>
+														<div class="col-md-2 col-sm-2">
+															<label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</label>
+																		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#insert_company"><i class="fa fa-plus-square "></i>
+																		เพิ่มข้อมูลบริษัท
+																		</button>
+														</div>
+														
+													</div>
+												</div>
+												
+
+<div id="insert_company" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabel">เพิ่มข้อมูลบริษัท</h4>
+			</div>
+
+			<!-- Modal Body -->
+			<div class="modal-body">
+				<form class="validate" action="php/contact.php" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+					<fieldset>
+						<!-- required [php action request] -->
+						<input type="hidden" name="action" value="contact_send" />
+
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12 col-sm-12">
+									<label>ชื่อบริษัท</label>
+									<input type="email" name="contact[email]" value="" class="form-control required">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12 col-sm-12">
+									<label>เบอร์โทรศัพท์ติดต่อ</label>
+									<input type="email" name="contact[email]" value="" class="form-control required">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12 col-sm-12">
+									<label>E-mail</label>
+									<input type="email" name="contact[email]" value="" class="form-control required">
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-12 col-sm-12">
+									<label>ที่อยู่บริษัท</label>
+									<textarea name="contact[experience]" rows="4" class="form-control required"></textarea>
+								</div>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>  	  
+			</div>
+
+			<!-- Modal Footer -->
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+				<button type="button" class="btn btn-primary">บันทึกข้อมูล</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+												
+
+											</fieldset>
+										</form>
+								</div>
+							</div>
+							
+			<!--ส่วนที่2-->
+							<div class="panel panel-default">
+								<div class="panel-heading panel-heading-transparent">
+										<strong>ฟอร์มนำเข้าครุภัณฑ์ (ส่วนที่ 2)</strong>
+								</div>
+								<div class="panel-body">
+										<form class="validate" action="php/contact.php" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+											<fieldset>
+												<!-- required [php action request] -->
+												<input type="hidden" name="action" value="contact_send" />
+
+												<div class="row">
+													<div class="form-group ">
+														<div class="col-md-6 col-sm-6 ">
+															<label>รหัสครุภัณฑ์มหาวิทยาลัย</label>
+															<input type="text" class="form-control masked" data-format="9999999999999" data-placeholder="_" placeholder="5702040000035">
+														</div>
+														<div class="col-md-6 col-sm-6">
+															<label>ประเภทครุภัณฑ์ (มหาวิทยาลัย)</label>
+															<select name="contact[position]" class="form-control pointer required">
+																<option value="">--- เลือกประเภท ---</option>
+																<option value="Marketing">ครุภัณฑ์คอมพิวเตอร์</option>
+																<option value="Developer">ครุภัณฑ์สำนักงาน</option>
+																
+															</select>
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="form-group ">
+														<div class="col-md-6 col-sm-6 ">
+															<label>รหัสครุภัณฑ์ภาควิชา</label>
+															<input type="text" class="form-control masked" data-format="คพ.99-99999/99" data-placeholder="_" placeholder="คพ.00-00000/00">
+														</div>
+														<div class="col-md-6 col-sm-6">
+															<label>ประเภทครุภัณฑ์ (มหาวิทยาลัย)</label>
+															<label>ประเภทครุภัณฑ์</label>
+																<select name="contact[position]" class="form-control pointer required">
+																	<option value="">--- เลือกประเภท ---</option>
+																	<option value="Marketing">ตู้ไม้ / โต๊ะทำงำน</option>
+																	<option value="Developer">เครื่องคอมพิวเตอร์</option>
+																</select>
+														</div>
+													</div>
+												</div>
+												
+												
+												
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-4 col-sm-4 ">
+															<label>ชื่อรายการครุภัณฑ์</label>
+															<input type="mat_name" name="contact[#]" value="" class="form-control required"></input>
+														</div>
+														<div class="col-md-4 col-sm-4 ">
+															<label>ยี่ห้อ/ลักษณะ</label>
+															<input type="mat_name" name="contact[#]" value="" class="form-control required"></input>
+														</div>
+														<div class="col-md-4 col-sm-4 ">
+															<label>จำนวน</label>
+															<input type="mat_name" name="contact[#]" value="" class="form-control required"></input>
+														</div>
+														
+													</div>
+												</div>
+												
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-4 col-sm-4">
+															<label>อายุการใช้งาน (ปี)</label>
+															<input type="text" name="contact[expected_salary]" value="" class="form-control required" >
+														</div>
+														<div class="col-md-4 col-sm-4 ">
+															<label>ราคาต่อหน่วย</label>
+															<input type="mat_name" name="contact[#]" value="" class="form-control required"></input>
+														</div>
+														<div class="col-md-4 col-sm-4">
+															<label>ราคาซาก</label>
+															<input type="text" name="contact[expected_salary]" value="" class="form-control required">
+														</div>
+														
+													</div>
+												</div>	
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-12 col-sm-12">
+															<label>ระยะประกัน</label>
+															<input type="text" class="form-control rangepicker" value="2015-01-01 - 2016-12-31" data-format="yyyy-mm-dd" data-from="2015-01-01" data-to="2016-12-31">
+														</div>
+													</div>
+												</div>
+												<div class="row">
+													<div class="form-group">
+														<div class="col-md-6 col-sm-6">
+															<label>อาคาร</label>
+															<select name="contact[position]" class="form-control pointer required">
+																<option value="">--- ระบุอาคาร/ตึก ---</option>
+																<option value="Marketing">อาคาร/ตึก 1</option>
+																<option value="Developer">อาคาร/ตึก 2</option>
+															</select>
+														</div>
+														<div class="col-md-6 col-sm-6">
+															<label>ห้อง</label>
+															<select name="contact[position]" class="form-control pointer required">
+																<option value="">--- ระบุห้อง ---</option>
+																<option value="Marketing">ห้อง 1</option>
+																<option value="Developer">ห้อง 2</option>
+															</select>
+														</div>
+													</div>
+												</div>
+											</fieldset>
+										</form>
+										<div class="row">
+											<div class="modal-footer">
+												<div class="col-md-10 col-sm-10"></div>
+												<div class="col-md-2 col-sm-2">
+													<button type="submit" class="btn btn-3d btn-green btn-lg btn-block margin-top-25">
+														<span class="block font-lato">เพิ่มฟอร์ม</span>
+													</button>
+												</div>
+											</div>
+								</div>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<div class="col-md-3">	
+							</div>
+							<div class="col-md-3">
+								<button type="submit" class="btn btn-3d btn-red btn-lg btn-block margin-top-30">
+									<span class="block font-lato">ยกเลิก</span>
+								</button>
+							</div>
+							<div class="col-md-3">
+								<button type="submit" class="btn btn-3d btn-teal btn-lg btn-block margin-top-30">
+									<span class="block font-lato">บันทึกข้อมูล</span>
+								</button>
+							</div>
+							<div class="col-md-3">
+							</div>			
+						</div>
+					</div>
+				</div>
+				<br>
+				<br>
+					<!-- /PANEL -->
+
+				</div>
+			</section>
+			<!-- /MIDDLE -->
+
+		</div>
+
+
+
+	
+		<!-- JAVASCRIPT FILES -->
+		<script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
+		<script type="text/javascript" src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+
+		<!-- PAGE LEVEL SCRIPTS -->
+		<script type="text/javascript">
+			loadScript(plugin_path + "jqgrid/js/jquery.jqGrid.js", function(){
+				loadScript(plugin_path + "jqgrid/js/i18n/grid.locale-en.js", function(){
+					loadScript(plugin_path + "bootstrap.datepicker/js/bootstrap-datepicker.min.js", function(){
+
+						var jqgrid_data = [{
+							
+							
+								
+							mat_id : "คพ.37-006/44",
+							mat_name : "ชุดอุปกรณ์เลือกเส้นทางสำหรับเครือข่าย  (Core Router)",
+							mattype_name : "ครุภัณฑ์คอมพิวเตอร์",
+							brand : "CISCO 2610",
+							mat_no : "",
+							mat_price: "20,000",
+							how : "",
+							place: "ศูนย์คอม",
+							year: "2559"
+					
+							
+							
+						}];
+
+						// ----------------------------------------------------------------------------------------------------
+						jQuery("#jqgrid").jqGrid({
+							data : jqgrid_data,
+							datatype : "local",
+							height : '260',
+							colNames : ['รหัสครุภัณฑ์', 'ชื่อครุภัณฑ์', 'ประเภทครุภัณฑ์', 'ยี่ห้อ', 'หมายเลขเครื่อง', 'ราคา/หน่วย', 'วิธีการที่ได้มา', 'สถานที่ใช้งาน', 'ปีงบประมาณ', 'หมายเหตุ'],
+							colModel : [
+								
+								{ name : 'mat_id', index : 'mat_id' }, 
+								{ name : 'mat_name', index : 'mat_name', align : "right", editable : true }, 
+								{ name : 'mattype_name', index : 'mattype_name', editable : true }, 
+								{ name : 'brand', index : 'brand', align : "right", editable : true }, 
+								{ name : 'mat_no', index : 'mat_no', align : "right", editable : true }, 
+								{ name : 'mat_price', index : 'mat_price', align : "right", editable : true }, 
+								{ name : 'how', index : 'how', align : "right", editable : true },
+								{ name : 'place', index : 'place', align : "right", editable : true }, 
+								{ name : 'year', index : 'year', align : "right", editable : true }, 
+								{ name : 'note', index : 'note', sortable : false, editable : true }],
+								
+							rowNum : 10,
+							rowList : [10, 20, 30],
+							pager : '#pager_jqgrid',
+							sortname : 'id',
+							toolbarfilter: true,
+							viewrecords : true,
+							sortorder : "asc",
+							
+							editurl : "ajax/dummy-jqtable.html",
+							caption : "jqGrid with inline editing",
+							multiselect : true,
+							autowidth : true,
+						});	
+
+						
+						// ----------------------------------------------------------------------------------------------------
+
+						//enable datepicker
+						function pickDate( cellvalue, options, cell ) {
+							setTimeout(function(){
+								jQuery(cell) .find('input[type=text]')
+										.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+							}, 0);
+						}
+
+						jQuery("#jqgrid").jqGrid('navGrid', "#pager_jqgrid", {
+							edit : false,
+							add : false,
+							del : true
+						});
+
+						jQuery("#jqgrid").jqGrid('inlineNav', "#pager_jqgrid");
+
+						// Get Selected ID's
+						jQuery("a.get_selected_ids").bind("click", function() {
+							s = jQuery("#jqgrid").jqGrid('getGridParam', 'selarrrow');
+							alert(s);
+						});
+
+						// Select/Unselect specific Row by id
+						jQuery("a.select_unselect_row").bind("click", function() {
+							jQuery("#jqgrid").jqGrid('setSelection', "13");
+						});
+
+						// Select/Unselect specific Row by id
+						jQuery("a.delete_row").bind("click", function() {
+							var su=jQuery("#jqgrid").jqGrid('delRowData',1);
+							if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
+						});
+
+
+						// On Resize
+						jQuery(window).resize(function() {
+
+							if(window.afterResize) {
+								clearTimeout(window.afterResize);
+							}
+
+							window.afterResize = setTimeout(function() {
+
+								/**
+									After Resize Code
+									.................
+								**/
+
+								jQuery("#jqgrid").jqGrid('setGridWidth', jQuery("#middle").width() - 32);
+
+							}, 500);
+
+						});
+
+						// ----------------------------------------------------------------------------------------------------
+
+						/**
+							@STYLING
+						
+						jQuery(".ui-jqgrid").removeClass("ui-widget ui-widget-content");
+						jQuery(".ui-jqgrid-view").children().removeClass("ui-widget-header ui-state-default");
+						jQuery(".ui-jqgrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
+						jQuery(".ui-jqgrid-pager").removeClass("ui-state-default");
+						jQuery(".ui-jqgrid").removeClass("ui-widget-content");
+
+						jQuery(".ui-jqgrid-htable").addClass("table table-bordered table-hover");
+						jQuery(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
+						jQuery(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
+						jQuery(".ui-icon.ui-icon-pencil").removeClass().addClass("fa fa-pencil");
+						jQuery(".ui-icon.ui-icon-trash").removeClass().addClass("fa fa-trash-o");
+						jQuery(".ui-icon.ui-icon-search").removeClass().addClass("fa fa-search");
+						jQuery(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
+						jQuery(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
+						jQuery(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
+
+						jQuery( ".ui-icon.ui-icon-seek-prev" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
+
+						jQuery( ".ui-icon.ui-icon-seek-first" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");		  	
+
+						jQuery( ".ui-icon.ui-icon-seek-next" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
+
+						jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+			**/
+					});
+				});
+			});
+		</script>
+
+	</body>
+</html>

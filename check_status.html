@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>ระบบจัดการครุภัณฑ์</title>
+		<meta name="description" content="" />
+		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+		<!-- WEB FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- THEME CSS -->
+		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css" id="color_scheme" />
+
+	</head>
+	<!--
+		.boxed = boxed version
+	-->
+	<body>
+
+
+		<!-- WRAPPER -->
+		<div id="wrapper">
+
+			<!-- 
+				ASIDE 
+				Keep it outside of #wrapper (responsive purpose)
+			-->
+			<aside id="aside">
+				
+				<nav id="sideNav"><!-- MAIN MENU -->
+					<ul class="nav nav-list">
+						
+						<li>
+							<a class="home" href="index_admin.html"><!-- warning - url used by default by ajax (if eneabled) -->
+								<i class="main-icon fa fa-home"></i> <span>หน้าหลัก</span>
+							</a>
+						</li>
+					
+						<li>
+							<a href="show_mat.html">
+								<i class="main-icon fa fa-plus-square"></i> <span>รายการครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="insert_mat.html">
+								<i class="main-icon fa fa-plus-square"></i> <span>เพิ่มครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="edit_mat.html">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>แก้ไขข้อมูลครุภัณฑ์</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="check_status.html">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>คำร้องขอยืมครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="check_obligation.html">
+								<i class="main-icon fa fa-pencil-square-o"></i> <span>ตรวจสอบหนี้สิน</span>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-check-square-o"></i> <span>ตรวจสอบครุภัณฑ์</span>
+							</a>
+							<ul>
+								<li><a href="#">ตรวจสอบสภาพครุภัณฑ์</a></li>
+								<li><a href="#">ตรวจสอบประกัน</a></li>
+								<li><a href="tables-footable.html">ตรวจสอบครุภัณฑ์ประจำปี</a></li>
+								
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="fa fa-menu-arrow pull-right"></i>
+								<i class="main-icon fa fa-file"></i> <span>ออกรายงาน</span>
+							</a>
+							<ul>
+								<li><a href="tables-bootstrap.html">รายงาน1</a></li>
+								<li><a href="tables-jqgrid.html">รายงาน2</a></li>
+							</ul>
+						</li>
+						<li>
+							<a href="#">
+								<i class="main-icon fa fa-external-link"></i> <span>จำหน่ายครุภัณฑ์</span>
+							</a>
+						</li>
+					</ul>	
+						
+						
+						
+					
+					<h3>MORE</h3>
+					<ul class="nav nav-list">
+						<li>
+							<a href="calendar.html">
+								<i class="main-icon fa fa-calendar"></i>
+								<span class="label label-warning pull-right">2</span> <span>Calendar</span>
+							</a>
+						</li>
+						<li>
+							<a href="../../HTML/start.html">
+								<i class="main-icon fa fa-link"></i>
+								<span class="label label-danger pull-right">PRO</span> <span>Frontend</span>
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+
+				<span id="asidebg"><!-- aside fixed background --></span>
+			</aside>
+			<!-- /ASIDE -->
+
+
+			<!-- HEADER -->
+			<header id="header">
+
+				<!-- Mobile Button -->
+				<button id="mobileMenuBtn"></button>
+
+				<!-- Logo -->
+				<span class="logo pull-left">
+					<img src="assets/images/logo_light.png" alt="admin panel" height="35" />
+				</span>
+
+				<form method="get" action="page-search.html" class="search pull-left hidden-xs">
+					<input type="text" class="form-control" name="k" placeholder="Search for something..." />
+				</form>
+
+				<nav>
+
+					<!-- OPTIONS LIST -->
+					<ul class="nav pull-right">
+
+						<!-- USER OPTIONS -->
+						<li class="dropdown pull-left">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<img class="user-avatar" alt="" src="assets/images/noavatar.jpg" height="34" /> 
+								<span class="user-name">
+									<span class="hidden-xs">
+										John Doe <i class="fa fa-angle-down"></i>
+									</span>
+								</span>
+							</a>
+							<ul class="dropdown-menu hold-on-click">
+								<li><!-- my calendar -->
+									<a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a>
+								</li>
+								<li><!-- my inbox -->
+									<a href="#"><i class="fa fa-envelope"></i> Inbox
+										<span class="pull-right label label-default">0</span>
+									</a>
+								</li>
+								<li><!-- settings -->
+									<a href="page-user-profile.html"><i class="fa fa-cogs"></i> Settings</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li><!-- lockscreen -->
+									<a href="page-lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
+								</li>
+								<li><!-- logout -->
+									<a href="page-login.html"><i class="fa fa-power-off"></i> Log Out</a>
+								</li>
+							</ul>
+						</li>
+						<!-- /USER OPTIONS -->
+
+					</ul>
+					<!-- /OPTIONS LIST -->
+
+				</nav>
+
+			</header>
+			<!-- /HEADER -->
+
+
+			<!--MIDDLE-->
+			<section id="middle">
+
+				<!-- page title -->
+				<header id="page-header">
+					<h1>คำร้องรออนุมัติการยืมครุภัณฑ์</h1>
+					<ol class="breadcrumb">
+						<li><a href="index_admin.html">หน้าหลัก</a></li>
+						<li class="active">คำร้องรออนุมัติการยืม</li>
+					</ol>
+				</header>
+				<!-- /page title -->
+
+
+				<div id="content" class="padding-20">
+
+						<div id="content" class="padding-20">
+							<div class="panel panel-default">
+								<div class="panel-heading panel-heading-transparent">
+									<strong>คำร้องรออนุมัติการยืม</strong>
+								</div>
+								
+								<!--รายชื่อผู้ยื่นคำร้องขอยืม-->
+								<div class="panel-body">
+									<table class="fooTableInit">
+										<thead>
+										  <tr>
+											<th class="foo-cell">ลำดับ</th>
+											<th class="foo-cell">ผู้ยืม</th>
+											<th class="foo-cell">วันที่ยื่นคำร้อง</th>
+											<th class="foo-cell">สถานะการอนุมัติ</th>
+										  </tr>
+										</thead>
+
+										<tbody>
+											<tr class="foo-cell" data-toggle="modal" data-target="#proceed1">
+												<td> 1 </td>
+												<td> ศิริรัตน์ แร่วงคต </td>
+												<td> 12/7/2560 </td>
+												<td data-value="11"><button type="button" class="btn btn-warning btn-xs">รอดำเนินการ</button></td>
+											</tr >
+											<tr class="foo-cell" data-toggle="modal" data-target="#proceed1">
+												<td> 2 </td>
+												<td> ชิดชนก เกสรสมบัติ </td>
+												<td> 15/7/2560 </td>
+												<td data-value="11"><button type="button" class="btn btn-warning btn-xs">รอดำเนินการ</button></td>
+											</tr>
+											<tr class="foo-cell" data-toggle="modal" data-target="#proceed2">
+												<td> 3 </td>
+												<td>นาราภัทร คำสวาท </td>
+												<td> 8/7/2560 </td>
+												<td data-value="11"><button type="button" class="btn btn-success btn-xs">ดำเนินการเรียบร้อยแล้ว</button></td>
+											</tr>
+											<tr class="foo-cell" data-toggle="modal" data-target="#proceed2">
+												<td> 4 </td>
+												<td> เฟรม พานิชพัฒน์ </td>
+												<td> 8/7/2560 </td>
+												<td data-value="11"><button type="button" class="btn btn-success btn-xs">ดำเนินการเรียบร้อยแล้ว</button></td>
+											</tr>
+										</tbody>
+									</table>
+									<div class="margin-top20 pagination text-center"><!-- PAGINATION --></div>
+								</div>
+								
+								<!--popupรายการครุภัณฑ์ที่รอการอนุมัติ-->
+								<div id="proceed1" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+																<div class="modal-dialog modal-lg">
+																	<div class="modal-content">
+
+																		<!-- header modal -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myLargeModalLabel">รายการครุภัณฑ์ที่แจ้งความประสงค์</h4>
+																		</div>
+
+																		<!-- body modal -->
+																		<div class="modal-body">
+																			<h4>ความประสงค์ของผู้ยืม</h4>
+																			<p><em>ต้องการนำไปใช้เป็นอุปกรณ์ในการทำโปรเจค</em></p>
+																			<hr />
+																			<div class="table-responsive nomargin">
+																				<table class="table table-bordered table-striped">
+																					<thead>
+																						<tr>
+																							<th>ลำดับ</th>
+																							<th><i class="#"></i>รหัสครุภัณฑ์</th>
+																							<th><i class="#"></i>รายการ</th>
+																							<th><i class="#"></i>เจ้าหน้าที่ผู้รับผิดชอบ</th>
+																							<th><i class="#"></i>ที่อยู่ของครุภัณฑ์</th>
+																							<th><i class="#"></i>การอนุมัติ</th>
+																						</tr>
+																					</thead>
+																					<tbody>
+																						<tr>
+																							<td>1</td>
+																							<td>คพ.35-009/56</td>
+																							<td> โทรศัพท์เคลื่อนที่แบบที่ 3</td>
+																							<td>นายA</td>
+																							<td>6601A</td>
+																							<td>
+																								<a href="#" class="btn btn-3d btn-red btn-sm" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove"></i>ไม่อนุมัติการยืม</a>
+																								<a href="#" class="btn btn-3d btn-green btn-sm" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-ok"></i>อนุมัติการยืม</a>
+																							</td>
+																						</tr>
+																						<tr>
+																							<td>2</td>
+																							<td>คพ.02-003/57</td>
+																							<td>คอมพิวเตอร์แบบที่ 1</td>
+																							<td>นายB</td>
+																							<td>8888</td>
+																							<td>
+																								<a href="#" class="btn btn-3d btn-red btn-sm" data-toggle="modal" data-target="#myModal"><i class="glyphicon glyphicon-remove"></i>ไม่อนุมัติการยืม</a>
+																								<a href="#" class="btn btn-3d btn-green btn-sm" data-toggle="modal" data-target="#myModal2"><i class="glyphicon glyphicon-ok"></i>อนุมัติการยืม</a>
+																							</td>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																				<button type="button" class="btn btn-primary">บันทึกการเปลี่ยนแปลง</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															
+															<!--popupรายการครุภัณฑ์ที่ทำรายการอนุมัติแล้ว-->
+															<div id="proceed2" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+																<div class="modal-dialog modal-lg">
+																	<div class="modal-content">
+
+																		<!-- header modal -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myLargeModalLabel">รายการครุภัณฑ์ที่แจ้งความประสงค์</h4>
+																		</div>
+
+																		<!-- body modal -->
+																		<div class="modal-body">
+																			<div class="table-responsive nomargin">
+																				<table class="table table-bordered table-striped">
+																					<thead>
+																						<tr>
+																							<th>ลำดับ</th>
+																							<th><i class="#"></i>รหัสครุภัณฑ์</th>
+																							<th><i class="#"></i>รายการ</th>
+																							<th><i class="#"></i>เจ้าหน้าที่ผู้รับผิดชอบ</th>
+																							<th><i class="#"></i>ที่อยู่ของครุภัณฑ์</th>
+																							<th><i class="#"></i>สถานะการอนุมัติ</th>
+																						</tr>
+																					</thead>
+																					<tbody>
+																						<tr data-toggle="modal" data-target="#approve1">
+																							<td>1</td>
+																							<td>คพ.35-009/56</td>
+																							<td> โทรศัพท์เคลื่อนที่แบบที่ 3</td>
+																							<td>นายA</td>
+																							<td>6601A</td>
+																							<td><button type="button" class="btn btn-success btn-xs" >อนุมัติแล้ว</button></td>
+																						</tr>
+																						<tr data-toggle="modal" data-target="#approve2">
+																							<td>2</td>
+																							<td>คพ.02-003/57</td>
+																							<td>คอมพิวเตอร์แบบที่ 1</td>
+																							<td>นายB</td>
+																							<td>8888</td>
+																							<td><button type="button" class="btn btn-danger btn-xs">ไม่อนุมัติ</button></td>
+																						</tr>
+																						<tr data-toggle="modal" data-target="#approve1">
+																							<td>3</td>
+																							<td>คพ.60-001/56</td>
+																							<td>อุปกรณ์ กล้องแบบไอพี เครือข่าย</td>
+																							<td>นายB</td>
+																							<td>3252</td>
+																							<td><button type="button" class="btn btn-success btn-xs" >อนุมัติแล้ว</button></td>
+																						</tr>
+																					</tbody>
+																				</table>
+																			</div>
+																			<div class="modal-footer">
+																				<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																				<button type="button" class="btn btn-primary">บันทึกการเปลี่ยนแปลง</button>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															
+															<!--ไม่อนุมัติ-->
+															<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div id="myModal" class="modal-dialog">
+																	<div class="modal-content">
+
+																		<!-- Modal Header -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myModalLabel">รายละเอียด</h4>
+																		</div>
+
+																		<!-- Modal Body -->
+																		<div class="modal-body">
+																			<p>กรุณากรอกเหตุผลที่ไม่อนุมัติ</p>
+																				<form class="validate" action="#" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+																					<fieldset>
+																						<!-- required [php action request] -->
+																						<input type="hidden" name="action" value="contact_send" />
+
+																						<div class="row">
+																						
+																							<div class="form-group">
+																								<div class="col-md-12 col-sm-12">
+																									<label>เหตุผลที่ไม่อนุมัติ *</label>
+																									<textarea name="contact[experience]" rows="4" class="form-control required"></textarea>
+																								</div>
+																							</div>
+																							
+																						</div>
+																					</fieldset>
+																				</form>
+																		</div>
+
+																		<!-- Modal Footer -->
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																			<button type="button" class="btn btn-primary">ยืนยัน</button>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+															
+															<!--อนุมัติ-->
+															<div id="myModal2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div id="myModal2" class="modal-dialog">
+																	<div class="modal-content">
+
+																		<!-- Modal Header -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myModalLabel">รายละเอียดการอนุมัติการยืม</h4>
+																		</div>
+
+																		<!-- Modal Body -->
+																		<div class="modal-body">
+																				<form class="validate" action="#" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+																					<fieldset>
+																						<!-- required [php action request] -->
+																						<input type="hidden" name="action" value="contact_send" />
+																						
+																						<div class="row">
+																							
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>อาคาร</label>
+																									<select name="contact[position]" class="form-control pointer required">
+																										<option value="">--- ระบุอาคาร/ตึก ---</option>
+																										<option value="Marketing">อาคาร/ตึก 1</option>
+																										<option value="Developer">อาคาร/ตึก 2</option>
+																									</select>
+																								</div>
+																								<div class="col-md-6 col-sm-6">
+																									<label>ห้อง</label>
+																									<select name="contact[position]" class="form-control pointer required">
+																										<option value="">--- ระบุห้อง ---</option>
+																										<option value="Marketing">ห้อง 1</option>
+																										<option value="Developer">ห้อง 2</option>
+																									</select>
+																								</div>
+																							</div>
+																						</div>
+																						
+																						<div class="row">
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>วันรับครุภัณฑ์</label>
+																									<input type="text" name="contact[start_date]" value="" class="form-control datepicker required" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+																								</div>
+																								<div class="col-md-6 col-sm-6">
+																									<label>เวลารับครุภัณฑ์</label>
+																									<input type="text" class="form-control timepicker" value="11 : 55 : PM">
+																								</div>
+																							</div>
+																						</div>
+																						
+																						<div class="row">
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>จำนวนวันที่สามารถยืมได้</label>
+																									<input type="text" value="2" min="0" max="1000" class="form-control stepper">
+																								</div>
+																							</div>
+																						</div>
+																						
+																					</fieldset>
+																				</form>
+
+																		</div>
+																		
+
+																		<!-- Modal Footer -->
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																			<button type="button" class="btn btn-primary">ยืนยันการอนุมัติ</button>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+															
+															<!--รายละเอียดไม่อนุมัติ-->
+															<div id="approve2" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div id="myModal" class="modal-dialog">
+																	<div class="modal-content">
+
+																		<!-- Modal Header -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myModalLabel">รายละเอียด</h4>
+																		</div>
+
+																		<!-- Modal Body -->
+																		<div class="modal-body">
+																			<p>กรุณากรอกเหตุผลที่ไม่อนุมัติ</p>
+																				<form class="validate" action="#" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+																					<fieldset>
+																						<!-- required [php action request] -->
+																						<input type="hidden" name="action" value="contact_send" />
+
+																						<div class="row">
+																						
+																							<div class="form-group">
+																								<div class="col-md-12 col-sm-12">
+																									<label>เหตุผลที่ไม่อนุมัติ *</label>
+																									<textarea name="contact[experience]" rows="4" class="form-control required">ไม่สามารถยืมได้เนื่องจากครุภัณฑ์ไม่เพียงพอ</textarea>
+																								</div>
+																							</div>
+																							
+																						</div>
+																					</fieldset>
+																				</form>
+																		</div>
+
+																		<!-- Modal Footer -->
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																			<button type="button" class="btn btn-primary">บันทึกการแก้ไข</button>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+															
+															<!--รายละเอียดการอนุมัติ-->
+															<div id="approve1" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+																<div id="myModal2" class="modal-dialog">
+																	<div class="modal-content">
+
+																		<!-- Modal Header -->
+																		<div class="modal-header">
+																			<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+																			<h4 class="modal-title" id="myModalLabel">รายละเอียดการอนุมัติการยืม</h4>
+																		</div>
+
+																		<!-- Modal Body -->
+																		<div class="modal-body">
+																				<form class="validate" action="#" method="post" enctype="multipart/form-data" data-success="Sent! Thank you!" data-toastr-position="top-right">
+																					<fieldset>
+																						<!-- required [php action request] -->
+																						<input type="hidden" name="action" value="contact_send" />
+																						
+																						<div class="row">
+																							
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>อาคาร</label>
+																									<select name="contact[position]" class="form-control pointer required" value="อาคาร/ตึก1" >
+																										<option value="#">อาคาร/ตึก1</option>
+																										<option value="#">--- ระบุอาคาร/ตึก ---</option>
+																										<option value="#">อาคาร/ตึก 1</option>
+																										<option value="#">อาคาร/ตึก 2</option>
+																									</select>
+																								</div>
+																								<div class="col-md-6 col-sm-6">
+																									<label>ห้อง</label>
+																									<select name="contact[position]" class="form-control pointer required" >
+																										<option value="#">ห้อง 1</option>
+																										<option value="#" >--- ระบุห้อง ---</option>
+																										<option value="#">ห้อง 1</option>
+																										<option value="#">ห้อง 2</option>
+																									</select>
+																								</div>
+																							</div>
+																						</div>
+																						
+																						<div class="row">
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>วันรับครุภัณฑ์</label>
+																									<input type="text" name="contact[start_date]" value="2017-07-12" class="form-control datepicker required" data-format="yyyy-mm-dd" data-lang="en" data-RTL="false">
+																								</div>
+																								<div class="col-md-6 col-sm-6">
+																									<label>เวลารับครุภัณฑ์</label>
+																									<input type="text" class="form-control timepicker" value="11 : 55 : PM">
+																								</div>
+																							</div>
+																						</div>
+																						
+																						<div class="row">
+																							<div class="form-group">
+																								<div class="col-md-6 col-sm-6">
+																									<label>จำนวนวันที่สามารถยืมได้</label>
+																									<input type="text" value="8" min="0" max="1000" class="form-control stepper">
+																								</div>
+																							</div>
+																						</div>
+																						
+																					</fieldset>
+																				</form>
+
+																		</div>
+																		
+
+																		<!-- Modal Footer -->
+																		<div class="modal-footer">
+																			<button type="button" class="btn btn-default" data-dismiss="modal">ยกเลิก</button>
+																			<button type="button" class="btn btn-primary">บันทึกการแก้ไข</button>
+																		</div>
+
+																	</div>
+																</div>
+															</div>
+
+							</div>
+						</div>
+				</div>
+			</section>
+			<!-- /MIDDLE -->
+		</div>
+
+<link href="assets/plugins/footable/css/footable.core.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/footable/css/footable.standalone.css" rel="stylesheet" type="text/css" />
+<!--
+	Minimal footable skin 
+	1. remove footable.standalone.css skin first
+	2. add .fooMinimal to the footable table
+	<link href="assets/css/layout-footable-minimal.css" rel="stylesheet" type="text/css" /> 
+-->
+
+
+
+	
+		<!-- JAVASCRIPT FILES -->
+		<script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
+		<script type="text/javascript" src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+		<script type="text/javascript">
+loadScript(plugin_path + "footable/dist/footable.min.js", function(){
+	loadScript(plugin_path + "footable/dist/footable.sort.min.js", function(){
+		loadScript(plugin_path + "footable/dist/footable.paginate.min.js", function(){ /** remove if pagination not needed **/
+
+			var $ftable = jQuery('.fooTableInit');
+
+
+			/** 01. FOOTABLE INIT
+			******************************************* **/
+			$ftable.footable({
+				breakpoints: {
+					s300: 300,
+					s600: 600
+				}
+			});
+
+
+			/** 01. PER PAGE SWITCH
+			******************************************* **/
+			jQuery('#change-page-size').change(function (e) {
+				e.preventDefault();
+				var pageSize = jQuery(this).val();
+				$ftable.data('page-size', pageSize);
+				$ftable.trigger('footable_initialized');
+			});
+
+			jQuery('#change-nav-size').change(function (e) {
+				e.preventDefault();
+				var navSize = jQuery(this).val();
+				$ftable.data('limit-navigation', navSize);
+				$ftable.trigger('footable_initialized');
+			});
+
+
+			/** 02. BOOTSTRAP 3.x PAGINATION FIX
+			******************************************* **/
+			jQuery("div.pagination").each(function() {
+				jQuery("div.pagination ul").addClass('pagination');
+				jQuery("div.pagination").removeClass('pagination');
+			});
+
+		});
+	});
+});
+</script>
+
+	</body>
+</html>

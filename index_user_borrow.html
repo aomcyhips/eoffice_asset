@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<title>ระบบจัดการครุภัณฑ์</title>
+		<meta name="description" content="" />
+		<meta name="Author" content="Dorin Grigoras [www.stepofweb.com]" />
+
+		<!-- mobile settings -->
+		<meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0" />
+
+		<!-- WEB FONTS -->
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800&amp;subset=latin,latin-ext,cyrillic,cyrillic-ext" rel="stylesheet" type="text/css" />
+
+		<!-- CORE CSS -->
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		
+		<!-- THEME CSS -->
+		<link href="assets/css/essentials.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/color_scheme/green.css" rel="stylesheet" type="text/css" id="color_scheme" />
+
+		<!-- JQGRID TABLE -->
+		<link href="assets/plugins/jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" />
+		<link href="assets/css/layout-jqgrid.css" rel="stylesheet" type="text/css" />
+	</head>
+	<!--
+		.boxed = boxed version
+	-->
+	<body>
+
+
+		<!-- WRAPPER -->
+		<div id="wrapper">
+
+			<!-- 
+				ASIDE 
+				Keep it outside of #wrapper (responsive purpose)
+			-->
+		<aside id="aside">
+				<!--
+					Always open:
+					<li class="active alays-open">
+
+					LABELS:
+						<span class="label label-danger pull-right">1</span>
+						<span class="label label-default pull-right">1</span>
+						<span class="label label-warning pull-right">1</span>
+						<span class="label label-success pull-right">1</span>
+						<span class="label label-info pull-right">1</span>
+				-->
+				<nav id="sideNav"><!-- MAIN MENU -->
+					<ul class="nav nav-list">
+						
+						<li>
+							<a class="home" href="index_user.html"><!-- warning - url used by default by ajax (if eneabled) -->
+								<i class="main-icon fa fa-home"></i> <span>หน้าหลัก</span>
+							</a>
+						</li>
+						<li>
+							<a href="index_user_search.html">
+								<i class="main-icon fa fa-search"></i> <span>สืบค้นข้อมูลครุภัณฑ์</span>
+							</a>
+						</li>
+						<li class="active">
+							<a href="index_user_borrow.html">
+								<i class="main-icon fa fa-exchange"></i> <span>ยืม-คืนครุภัณฑ์</span>
+							</a>
+						</li>
+						<li>
+							<a href="index_user_check.html">
+								<i class="main-icon fa fa-check-square-o"></i> <span>ตรวจสอบสถานะการยืม</span>
+							</a>
+						</li>
+					</ul>	
+						
+						
+					
+					<h3>MORE</h3>
+					<ul class="nav nav-list">
+						<li>
+							<a href="calendar.html">
+								<i class="main-icon fa fa-calendar"></i>
+								<span class="label label-warning pull-right">2</span> <span>Calendar</span>
+							</a>
+						</li>
+						<li>
+							<a href="../../HTML/start.html">
+								<i class="main-icon fa fa-link"></i>
+								<span class="label label-danger pull-right">PRO</span> <span>Frontend</span>
+							</a>
+						</li>
+					</ul>
+
+				</nav>
+
+				<span id="asidebg"><!-- aside fixed background --></span>
+			</aside>
+
+
+			<!-- HEADER -->
+			<header id="header">
+
+				<!-- Mobile Button -->
+				<button id="mobileMenuBtn"></button>
+
+				<!-- Logo -->
+				<span class="logo pull-left">
+					<img src="assets/images/logo_light.png" alt="admin panel" height="35" />
+				</span>
+
+				<form method="get" action="page-search.html" class="search pull-left hidden-xs">
+					<input type="text" class="form-control" name="k" placeholder="Search for something..." />
+				</form>
+
+				<nav>
+
+					<!-- OPTIONS LIST -->
+					<ul class="nav pull-right">
+
+						<!-- USER OPTIONS -->
+						<li class="dropdown pull-left">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+								<img class="user-avatar" alt="" src="assets/images/noavatar.jpg" height="34" /> 
+								<span class="user-name">
+									<span class="hidden-xs">
+										John Doe <i class="fa fa-angle-down"></i>
+									</span>
+								</span>
+							</a>
+							<ul class="dropdown-menu hold-on-click">
+								<li><!-- my calendar -->
+									<a href="calendar.html"><i class="fa fa-calendar"></i> Calendar</a>
+								</li>
+								<li><!-- my inbox -->
+									<a href="#"><i class="fa fa-envelope"></i> Inbox
+										<span class="pull-right label label-default">0</span>
+									</a>
+								</li>
+								<li><!-- settings -->
+									<a href="page-user-profile.html"><i class="fa fa-cogs"></i> Settings</a>
+								</li>
+
+								<li class="divider"></li>
+
+								<li><!-- lockscreen -->
+									<a href="page-lock.html"><i class="fa fa-lock"></i> Lock Screen</a>
+								</li>
+								<li><!-- logout -->
+									<a href="page-login.html"><i class="fa fa-power-off"></i> Log Out</a>
+								</li>
+							</ul>
+						</li>
+						<!-- /USER OPTIONS -->
+
+					</ul>
+					<!-- /OPTIONS LIST -->
+
+				</nav>
+
+			</header>
+			<!-- /HEADER -->
+
+
+			<!-- 
+				MIDDLE 
+			-->
+			<section id="middle">
+
+
+				<!-- page title -->
+				<header id="page-header">
+					<h1>jQuery Grid</h1>
+					<ol class="breadcrumb">
+						<li><a href="#">Tables</a></li>
+						<li class="active">jQuery Grid</li>
+					</ol>
+				</header>
+				<!-- /page title -->
+
+
+				<div id="content" class="padding-20">
+
+					<!-- 
+						PANEL CLASSES:
+							panel-default
+							panel-danger
+							panel-warning
+							panel-info
+							panel-success
+
+						INFO: 	panel collapse - stored on user localStorage (handled by app.js _panels() function).
+								All pannels should have an unique ID or the panel collapse status will not be stored!
+					-->
+					<div id="panel-1" class="panel panel-default">
+						<div class="panel-heading">
+							<span class="title elipsis">
+								<strong>CLEAN TABLE</strong> <!-- panel title -->
+							</span>
+
+							<!-- right options -->
+							<ul class="options pull-right list-inline">
+								<li><a href="#" class="opt panel_colapse" data-toggle="tooltip" title="Colapse" data-placement="bottom"></a></li>
+								<li><a href="#" class="opt panel_fullscreen hidden-xs" data-toggle="tooltip" title="Fullscreen" data-placement="bottom"><i class="fa fa-expand"></i></a></li>
+								<li><a href="#" class="opt panel_close" data-confirm-title="Confirm" data-confirm-message="Are you sure you want to remove this panel?" data-toggle="tooltip" title="Close" data-placement="bottom"><i class="fa fa-times"></i></a></li>
+							</ul>
+							<!-- /right options -->
+
+						</div>
+
+						<!-- panel content -->
+						<div class="panel-body">
+
+							<table id="jqgrid"></table>
+							<div id="pager_jqgrid"></div>
+
+							<br />
+
+							<a href="javascript:;" class="btn btn-default select_unselect_row">Select/Unselect Row By ID</a>
+							<a href="javascript:;" class="btn btn-default get_selected_ids">Get Selected ID's</a>
+							<a href="javascript:;" class="btn btn-default delete_row">Delete Inv. No #1</a>
+
+						</div>
+						<!-- /panel content -->
+
+						<!-- panel footer -->
+						<div class="panel-footer">
+
+<!-- pre code -->
+<div class="text-left">
+	<a class="btn btn-xs btn-info" href="javascript:;" onclick="jQuery('#pre-0').slideToggle();">Show Code</a>
+</div>
+<pre id="pre-0" class="text-left noradius text-danger softhide margin-top-10">
+<span class="text-success">&lt;!-- HTML JQGRID TABLE --&gt;</span>
+&lt;table id="jqgrid"&gt;&lt;/table&gt;
+&lt;div id="pager_jqgrid"&gt;&lt;/div&gt;
+
+
+<span class="text-success">&lt;!-- CSS JQGRID TABLE --&gt;</span>
+&lt;link href="assets/plugins/jqgrid/css/ui.jqgrid.css" rel="stylesheet" type="text/css" /&gt;
+&lt;link href="assets/css/layout-jqgrid.css" rel="stylesheet" type="text/css" /&gt;
+
+<span class="text-success">&lt;!-- JS JQGRID TABLE --&gt;</span>
+loadScript(plugin_path + "jqgrid/js/jquery.jqGrid.js", function(){
+	loadScript(plugin_path + "jqgrid/js/i18n/grid.locale-en.js", function(){
+		loadScript(plugin_path + "bootstrap.datepicker/js/bootstrap-datepicker.min.js", function(){
+			&lt;script type="text/javascript"&gt;
+				var jqgrid_data = [{
+					id : "1",
+					date : "2014-10-01",
+					name : "Test 1",
+					note : "Note 1",
+					amount : "150.00",
+					tax : "15.00",
+					total : "210.00"
+				}, {
+					id : "2",
+					date : "2014-10-02",
+					name : "Test 2",
+					note : "Note 2",
+					amount : "220.00",
+					tax : "22.00",
+					total : "320.00"
+				}, {
+					id : "3",
+					date : "2014-09-01",
+					name : "Test 3",
+					note : "Note 3",
+					amount : "40.00",
+					tax : "4.00",
+					total : "430.00"
+				}, {
+					id : "4",
+					date : "2014-10-04",
+					name : "Test 4",
+					note : "Note 4",
+					amount : "510.00",
+					tax : "51.00",
+					total : "210.00"
+				}, {
+					id : "5",
+					date : "2014-10-05",
+					name : "Test 5",
+					note : "Note 5",
+					amount : "210.00",
+					tax : "21.00",
+					total : "320.00"
+				}, {
+					id : "6",
+					date : "2014-09-06",
+					name : "Test 6",
+					note : "Note 6",
+					amount : "70.00",
+					tax : "7.00",
+					total : "430.00"
+				}
+				// ----------------------------------------------------------------------------------------------------
+				jQuery("#jqgrid").jqGrid({
+					data : jqgrid_data,
+					datatype : "local",
+					height : '250',
+					colNames : ['Actions', 'รหัสครุภัณฑ์', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
+					colModel : [
+						{ name : 'act', index:'act', sortable:false }, 
+						{ name : 'id', index : 'id' }, 
+						{ name : 'date', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate }, 
+						{ name : 'name', index : 'name', editable : true }, 
+						{ name : 'amount', index : 'amount', align : "right", editable : true }, 
+						{ name : 'tax', index : 'tax', align : "right", editable : true }, 
+						{ name : 'total', index : 'total', align : "right", editable : true }, 
+						{ name : 'note', index : 'note', sortable : false, editable : true }],
+					rowNum : 10,
+					rowList : [10, 20, 30],
+					pager : '#pager_jqgrid',
+					sortname : 'id',
+					toolbarfilter: true,
+					viewrecords : true,
+					sortorder : "asc",
+					gridComplete: function(){
+						var ids = jQuery("#jqgrid").jqGrid('getDataIDs');
+						for(var i=0;i &lt; ids.length;i++){
+							var cl = ids[i];
+							be = "&lt;button class='btn btn-xs btn-default btn-quick' title='Edit Row' onclick=\"jQuery('#jqgrid').editRow('"+cl+"');\"&gt;&lt;i class='fa fa-pencil'&gt;&lt;/i&gt;&lt;/button&gt;"; 
+							se = "&lt;button class='btn btn-xs btn-default btn-quick' title='Save Row' onclick=\"jQuery('#jqgrid').saveRow('"+cl+"');\"&gt;&lt;i class='fa fa-save'&gt;&lt;/i&gt;&lt;/button&gt;";
+							ca = "&lt;button class='btn btn-xs btn-default btn-quick' title='Cancel' onclick=\"jQuery('#jqgrid').restoreRow('"+cl+"');\"&gt;&lt;i class='fa fa-times'&gt;&lt;/i&gt;&lt;/button&gt;";  
+							jQuery("#jqgrid").jqGrid('setRowData',ids[i],{act:be+se+ca});
+						}	
+					},
+					editurl : "ajax/dummy-jqtable.html",
+					caption : "jqGrid with inline editing",
+					multiselect : true,
+					autowidth : true,
+				});			
+				// ----------------------------------------------------------------------------------------------------
+
+				//enable datepicker
+				function pickDate( cellvalue, options, cell ) {
+					setTimeout(function(){
+						jQuery(cell) .find('input[type=text]')
+								.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+					}, 0);
+				}
+
+				jQuery("#jqgrid").jqGrid('navGrid', "#pager_jqgrid", {
+					edit : false,
+					add : false,
+					del : true
+				});
+
+				jQuery("#jqgrid").jqGrid('inlineNav', "#pager_jqgrid");
+
+				// Get Selected ID's
+				jQuery("a.get_selected_ids").bind("click", function() {
+					s = jQuery("#jqgrid").jqGrid('getGridParam', 'selarrrow');
+					alert(s);
+				});
+
+				// Select/Unselect specific Row by id
+				jQuery("a.select_unselect_row").bind("click", function() {
+					jQuery("#jqgrid").jqGrid('setSelection', "13");
+				});
+
+				// Select/Unselect specific Row by id
+				jQuery("a.delete_row").bind("click", function() {
+					var su=jQuery("#jqgrid").jqGrid('delRowData',1);
+					if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
+				});
+
+
+				// On Resize
+				jQuery(window).resize(function() {
+
+					if(window.afterResize) {
+						clearTimeout(window.afterResize);
+					}
+
+					window.afterResize = setTimeout(function() {
+
+						/**
+							After Resize Code
+							.................
+						**/
+
+						jQuery("#jqgrid").jqGrid('setGridWidth', jQuery("#middle").width() - 32);
+
+					}, 500);
+
+				});
+
+				// ----------------------------------------------------------------------------------------------------
+
+				/**
+					@STYLING
+				**/
+				jQuery(".ui-jqgrid").removeClass("ui-widget ui-widget-content");
+				jQuery(".ui-jqgrid-view").children().removeClass("ui-widget-header ui-state-default");
+				jQuery(".ui-jqgrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
+				jQuery(".ui-jqgrid-pager").removeClass("ui-state-default");
+				jQuery(".ui-jqgrid").removeClass("ui-widget-content");
+
+				jQuery(".ui-jqgrid-htable").addClass("table table-bordered table-hover");
+				jQuery(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
+				jQuery(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
+				jQuery(".ui-icon.ui-icon-pencil").removeClass().addClass("fa fa-pencil");
+				jQuery(".ui-icon.ui-icon-trash").removeClass().addClass("fa fa-trash-o");
+				jQuery(".ui-icon.ui-icon-search").removeClass().addClass("fa fa-search");
+				jQuery(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
+				jQuery(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
+				jQuery(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
+
+				jQuery( ".ui-icon.ui-icon-seek-prev" ).wrap( "&lt;div class='btn btn-sm btn-default'&gt;&lt;/div&gt;" );
+				jQuery(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
+
+				jQuery( ".ui-icon.ui-icon-seek-first" ).wrap( "&lt;div class='btn btn-sm btn-default'&gt;&lt;/div&gt;" );
+				jQuery(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");		  	
+
+				jQuery( ".ui-icon.ui-icon-seek-next" ).wrap( "&lt;div class='btn btn-sm btn-default'&gt;&lt;/div&gt;" );
+				jQuery(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
+
+				jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "&lt;div class='btn btn-sm btn-default'&gt;&lt;/div&gt;" );
+				jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+			&lt;/script&gt;
+
+		});
+	});
+});
+</pre>
+<!-- /pre code -->
+
+						</div>
+						<!-- /panel footer -->
+
+					</div>
+					<!-- /PANEL -->
+
+				</div>
+			</section>
+			<!-- /MIDDLE -->
+
+		</div>
+
+
+
+	
+		<!-- JAVASCRIPT FILES -->
+		<script type="text/javascript">var plugin_path = 'assets/plugins/';</script>
+		<script type="text/javascript" src="assets/plugins/jquery/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript" src="assets/js/app.js"></script>
+
+		<!-- PAGE LEVEL SCRIPTS -->
+		<script type="text/javascript">
+			loadScript(plugin_path + "jqgrid/js/jquery.jqGrid.js", function(){
+				loadScript(plugin_path + "jqgrid/js/i18n/grid.locale-en.js", function(){
+					loadScript(plugin_path + "bootstrap.datepicker/js/bootstrap-datepicker.min.js", function(){
+
+						var jqgrid_data = [{
+							id : "1",
+							date : "2014-10-01",
+							name : "Test 1",
+							note : "Note 1",
+							amount : "150.00",
+							tax : "15.00",
+							total : "210.00"
+						}, {
+							id : "2",
+							date : "2014-10-02",
+							name : "Test 2",
+							note : "Note 2",
+							amount : "220.00",
+							tax : "22.00",
+							total : "320.00"
+						}, {
+							id : "3",
+							date : "2014-09-01",
+							name : "Test 3",
+							note : "Note 3",
+							amount : "40.00",
+							tax : "4.00",
+							total : "430.00"
+						}];
+
+						// ----------------------------------------------------------------------------------------------------
+						jQuery("#jqgrid").jqGrid({
+							data : jqgrid_data,
+							datatype : "local",
+							height : '250',
+							colNames : ['Actions', 'รหัสครุภัณฑ์', 'Date', 'Client', 'Amount', 'Tax', 'Total', 'Notes'],
+							colModel : [
+								{ name : 'act', index:'act', sortable:false }, 
+								{ name : 'id', index : 'id' }, 
+								{ name : 'date', index : 'sdate', editable : true, sorttype:"date",unformat: pickDate }, 
+								{ name : 'name', index : 'name', editable : true }, 
+								{ name : 'amount', index : 'amount', align : "right", editable : true }, 
+								{ name : 'tax', index : 'tax', align : "right", editable : true }, 
+								{ name : 'total', index : 'total', align : "right", editable : true }, 
+								{ name : 'note', index : 'note', sortable : false, editable : true }],
+							rowNum : 10,
+							rowList : [10, 20, 30],
+							pager : '#pager_jqgrid',
+							sortname : 'id',
+							toolbarfilter: true,
+							viewrecords : true,
+							sortorder : "asc",
+							gridComplete: function(){
+								var ids = jQuery("#jqgrid").jqGrid('getDataIDs');
+								for(var i=0;i < ids.length;i++){
+									var cl = ids[i];
+									be = "<button class='btn btn-xs btn-default btn-quick' title='Edit Row' onclick=\"jQuery('#jqgrid').editRow('"+cl+"');\"><i class='fa fa-pencil'></i></button>"; 
+									se = "<button class='btn btn-xs btn-default btn-quick' title='Save Row' onclick=\"jQuery('#jqgrid').saveRow('"+cl+"');\"><i class='fa fa-save'></i></button>";
+									ca = "<button class='btn btn-xs btn-default btn-quick' title='Cancel' onclick=\"jQuery('#jqgrid').restoreRow('"+cl+"');\"><i class='fa fa-times'></i></button>";  
+									jQuery("#jqgrid").jqGrid('setRowData',ids[i],{act:be+se+ca});
+								}	
+							},
+							editurl : "ajax/dummy-jqtable.html",
+							caption : "jqGrid with inline editing",
+							multiselect : true,
+							autowidth : true,
+						});			
+						// ----------------------------------------------------------------------------------------------------
+
+						//enable datepicker
+						function pickDate( cellvalue, options, cell ) {
+							setTimeout(function(){
+								jQuery(cell) .find('input[type=text]')
+										.datepicker({format:'yyyy-mm-dd' , autoclose:true}); 
+							}, 0);
+						}
+
+						jQuery("#jqgrid").jqGrid('navGrid', "#pager_jqgrid", {
+							edit : false,
+							add : false,
+							del : true
+						});
+
+						jQuery("#jqgrid").jqGrid('inlineNav', "#pager_jqgrid");
+
+						// Get Selected ID's
+						jQuery("a.get_selected_ids").bind("click", function() {
+							s = jQuery("#jqgrid").jqGrid('getGridParam', 'selarrrow');
+							alert(s);
+						});
+
+						// Select/Unselect specific Row by id
+						jQuery("a.select_unselect_row").bind("click", function() {
+							jQuery("#jqgrid").jqGrid('setSelection', "13");
+						});
+
+						// Select/Unselect specific Row by id
+						jQuery("a.delete_row").bind("click", function() {
+							var su=jQuery("#jqgrid").jqGrid('delRowData',1);
+							if(su) alert("Succes. Write custom code to delete row from server"); else alert("Already deleted or not in list");
+						});
+
+
+						// On Resize
+						jQuery(window).resize(function() {
+
+							if(window.afterResize) {
+								clearTimeout(window.afterResize);
+							}
+
+							window.afterResize = setTimeout(function() {
+
+								/**
+									After Resize Code
+									.................
+								**/
+
+								jQuery("#jqgrid").jqGrid('setGridWidth', jQuery("#middle").width() - 32);
+
+							}, 500);
+
+						});
+
+						// ----------------------------------------------------------------------------------------------------
+
+						/**
+							@STYLING
+						**/
+						jQuery(".ui-jqgrid").removeClass("ui-widget ui-widget-content");
+						jQuery(".ui-jqgrid-view").children().removeClass("ui-widget-header ui-state-default");
+						jQuery(".ui-jqgrid-labels, .ui-search-toolbar").children().removeClass("ui-state-default ui-th-column ui-th-ltr");
+						jQuery(".ui-jqgrid-pager").removeClass("ui-state-default");
+						jQuery(".ui-jqgrid").removeClass("ui-widget-content");
+
+						jQuery(".ui-jqgrid-htable").addClass("table table-bordered table-hover");
+						jQuery(".ui-pg-div").removeClass().addClass("btn btn-sm btn-primary");
+						jQuery(".ui-icon.ui-icon-plus").removeClass().addClass("fa fa-plus");
+						jQuery(".ui-icon.ui-icon-pencil").removeClass().addClass("fa fa-pencil");
+						jQuery(".ui-icon.ui-icon-trash").removeClass().addClass("fa fa-trash-o");
+						jQuery(".ui-icon.ui-icon-search").removeClass().addClass("fa fa-search");
+						jQuery(".ui-icon.ui-icon-refresh").removeClass().addClass("fa fa-refresh");
+						jQuery(".ui-icon.ui-icon-disk").removeClass().addClass("fa fa-save").parent(".btn-primary").removeClass("btn-primary").addClass("btn-success");
+						jQuery(".ui-icon.ui-icon-cancel").removeClass().addClass("fa fa-times").parent(".btn-primary").removeClass("btn-primary").addClass("btn-danger");
+
+						jQuery( ".ui-icon.ui-icon-seek-prev" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-prev").removeClass().addClass("fa fa-backward");
+
+						jQuery( ".ui-icon.ui-icon-seek-first" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-first").removeClass().addClass("fa fa-fast-backward");		  	
+
+						jQuery( ".ui-icon.ui-icon-seek-next" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-next").removeClass().addClass("fa fa-forward");
+
+						jQuery( ".ui-icon.ui-icon-seek-end" ).wrap( "<div class='btn btn-sm btn-default'></div>" );
+						jQuery(".ui-icon.ui-icon-seek-end").removeClass().addClass("fa fa-fast-forward");
+			
+					});
+				});
+			});
+		</script>
+
+	</body>
+</html>
